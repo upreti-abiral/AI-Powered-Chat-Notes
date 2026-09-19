@@ -1,97 +1,130 @@
-🧠 ChatNotes — AI-Powered Chat Notes App
-✨ Overview
+# ChatNotes
 
-ChatNotes is a modern, chat-style notebook app built with Python and Tkinter.
-It lets you write notes like you’re chatting, tag or search them instantly, and later upgrade to add AI-powered summarization, voice input, or cloud sync.
+A simple desktop note-taking application built with Python, Tkinter, and SQLite.
 
-It’s lightweight, aesthetic, and perfect for students, creators, or anyone who wants a cleaner note experience.
+## Overview
 
-🚀 Features
+ChatNotes is a local note-taking app with a chat-style interface. Notes can be added from the input box, displayed with their timestamps, and searched using keywords.
 
-✅ Minimal & modern chat-style interface
-✅ Instant note saving with timestamp
-✅ Search your notes by keywords or tags
-✅ Simple, local SQLite database storage
-✅ Clean UI built using Tkinter + ttk
+I built this project to practise working with a graphical user interface, local databases, user input, and basic application structure in Python.
 
-Upcoming Upgrades (Planned):
-🪄 AI note summarizer (OpenAI API)
-🎤 Voice input (speech-to-text)
-🔊 Text-to-speech reader
-🌗 Dark mode toggle
-🔖 Tag-based organization
-☁️ Cloud sync with Google Drive / Firebase
+## Features
 
-🧩 Project Structure
-chatnotes/
+* Chat-style note interface
+* Add notes with a timestamp
+* Search notes by keyword
+* Store notes locally using SQLite
+* Display saved notes when the application starts
+* Simple desktop interface using Tkinter and `ttk`
+
+## How It Works
+
+When a note is entered, the application:
+
+1. Takes the user's input.
+2. Saves the note and timestamp to the SQLite database.
+3. Displays the note in the chat area.
+4. Allows saved notes to be searched using the search bar.
+
+The notes remain stored locally in the SQLite database, so they are available the next time the application is opened.
+
+## Project Structure
+
+```text
+ChatNotes/
 │
-├── chatnotes_app.py      # Main Tkinter UI (chat-like)
-├── notes_db.py           # Handles database and queries
-├── README.md             # Project documentation
+├── chatnotes_app.py
+├── notes_db.py
+├── README.md
 └── assets/
-    └── icon.png          # (Optional) App icon
+    └── icon.png
+```
 
-⚙️ Installation & Setup
-1️⃣ Clone the Repository
+### Files
+
+**`chatnotes_app.py`**
+Contains the main application interface and user interaction.
+
+**`notes_db.py`**
+Handles the SQLite database and database operations.
+
+**`README.md`**
+Project documentation.
+
+**`assets/`**
+Contains optional application assets.
+
+## Requirements
+
+* Python 3.8 or newer
+* Tkinter
+* SQLite3
+
+Tkinter and SQLite3 are included with most standard Python installations, so no external packages are required for the current version.
+
+## Installation
+
+Clone the repository:
+
+```bash
 git clone https://github.com/your-username/chatnotes.git
 cd chatnotes
+```
 
-2️⃣ Install Python Requirements
+Run the application:
 
-You don’t need any external libraries (Tkinter and SQLite come built-in with Python).
-Just ensure you have Python 3.8+ installed.
-
-3️⃣ Run the App
+```bash
 python chatnotes_app.py
+```
 
-💬 How It Works
+A local SQLite database will be created for storing the notes.
 
-Type a note in the input bar and press Enter or click Add Note.
+## Database
 
-Your note appears instantly in the chat area with a timestamp.
+The application uses SQLite for local storage.
 
-Use the search bar to filter through notes in real time.
+### Notes Table
 
-All notes are stored locally in chatnotes.db (SQLite).
+| Column      | Type    | Purpose                   |
+| ----------- | ------- | ------------------------- |
+| `id`        | INTEGER | Unique identifier         |
+| `message`   | TEXT    | Note content              |
+| `timestamp` | TEXT    | Time the note was created |
+| `tag`       | TEXT    | Optional note tag         |
 
-🖼️ Screenshot (example layout)
+## Technologies
 
-(Add this once you run the app and take a screenshot)
+* **Python**
+* **Tkinter / ttk**
+* **SQLite3**
 
-🧠 Chat Notes 💬
+## What I Learned
 
-[ Chat-like interface showing timestamped notes ]
+This project gave me practical experience with:
 
-🧠 Future Upgrades (Phase 2 & 3)
-Feature	Description	Library
-🪄 AI Summarizer	Summarize notes or entire days	openai
-🎤 Voice Input	Convert speech to note text	speech_recognition
-🔊 Text-to-Speech	Read notes aloud	pyttsx3
-🌗 Dark Mode	Toggle themes	ttkbootstrap
-☁️ Cloud Sync	Backup to Google Drive	pydrive / firebase-admin
-📦 Database Schema
-Column	Type	Description
-id	INTEGER	Primary Key
-message	TEXT	The note content
-timestamp	TEXT	When the note was added
-tag	TEXT	(Optional) topic tag
-🧰 Tech Stack
+* Building a desktop GUI with Tkinter
+* Connecting a Python application to a database
+* Creating and querying an SQLite database
+* Handling user input
+* Organising code across multiple Python files
+* Designing a simple search function
+* Managing application state
 
-Python 3.8+
+## Future Improvements
 
-Tkinter (for UI)
+Possible future versions could include:
 
-SQLite3 (for storage)
+* AI-assisted note summarisation
+* Voice input
+* Text-to-speech
+* Dark mode
+* Improved tag organisation
+* Cloud backup
 
-👨‍💻 Author
+These features are not part of the current version.
 
-Developed by: [Abiral Upreti]
-📧 Email: abiralzone@gmail.com
+## Author
 
-🌐 GitHub: Abiral Upreti
+**Abiral Upreti**
 
-🪪 License
-
-This project is open-source under the MIT License
-.
-Feel free to fork and enhance — credits appreciated 💙
+This project is part of my ongoing work with Python and computer science.
