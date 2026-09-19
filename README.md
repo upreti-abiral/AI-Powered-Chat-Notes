@@ -1,32 +1,37 @@
 # ChatNotes
 
-A simple desktop note-taking application built with Python, Tkinter, and SQLite.
+A desktop note-taking application built with Python, Tkinter, SQLite, and the OpenAI API.
 
 ## Overview
 
-ChatNotes is a local note-taking app with a chat-style interface. Notes can be added from the input box, displayed with their timestamps, and searched using keywords.
+ChatNotes is a local note-taking application with a simple desktop interface. Users can create, view, search, and delete notes, as well as generate a short AI summary of a selected note.
 
-I built this project to practise working with a graphical user interface, local databases, user input, and basic application structure in Python.
+The project combines a graphical user interface, local database storage, and an external AI API in one Python application.
 
 ## Features
 
-* Chat-style note interface
-* Add notes with a timestamp
-* Search notes by keyword
+* Create notes with a title and content
 * Store notes locally using SQLite
-* Display saved notes when the application starts
-* Simple desktop interface using Tkinter and `ttk`
+* Display saved notes with timestamps
+* Search notes by title or content
+* Delete notes
+* Generate AI summaries of selected notes
+* Simple desktop interface built with Tkinter
 
 ## How It Works
 
-When a note is entered, the application:
+When a note is created, ChatNotes stores its title, content, and timestamp in a local SQLite database.
 
-1. Takes the user's input.
-2. Saves the note and timestamp to the SQLite database.
-3. Displays the note in the chat area.
-4. Allows saved notes to be searched using the search bar.
+The application can then:
 
-The notes remain stored locally in the SQLite database, so they are available the next time the application is opened.
+1. Load saved notes from the database.
+2. Display them in the interface.
+3. Search notes using a keyword.
+4. Delete selected notes.
+5. Send the selected note to the OpenAI API when an AI summary is requested.
+6. Display the generated summary to the user.
+
+The notes database remains local to the computer. Only the note content used for summarisation is sent to the OpenAI API when that feature is used.
 
 ## Project Structure
 
@@ -43,10 +48,10 @@ ChatNotes/
 ### Files
 
 **`chatnotes_app.py`**
-Contains the main application interface and user interaction.
+Contains the graphical interface, user interaction, note management, search, and AI summarisation.
 
 **`notes_db.py`**
-Handles the SQLite database and database operations.
+Handles SQLite database creation, storing notes, retrieving notes, deleting notes, and searching.
 
 **`README.md`**
 Project documentation.
@@ -54,13 +59,26 @@ Project documentation.
 **`assets/`**
 Contains optional application assets.
 
+## Technologies
+
+* **Python**
+* **Tkinter / ttk** for the graphical interface
+* **SQLite3** for local data storage
+* **OpenAI API** for note summarisation
+
 ## Requirements
 
-* Python 3.8 or newer
-* Tkinter
-* SQLite3
+* Python 3.8+
+* OpenAI Python library
+* An OpenAI API key
 
-Tkinter and SQLite3 are included with most standard Python installations, so no external packages are required for the current version.
+Tkinter and SQLite3 are included with most standard Python installations.
+
+Install the OpenAI library:
+
+```bash
+pip install openai
+```
 
 ## Installation
 
@@ -71,54 +89,80 @@ git clone https://github.com/your-username/chatnotes.git
 cd chatnotes
 ```
 
-Run the application:
+Install the required package:
+
+```bash
+pip install openai
+```
+
+## API Key Setup
+
+The application reads the OpenAI API key from an environment variable.
+
+### Windows PowerShell
+
+```powershell
+$env:OPENAI_API_KEY="your_api_key_here"
+```
+
+### macOS / Linux
+
+```bash
+export OPENAI_API_KEY="your_api_key_here"
+```
+
+Do **not** place your API key directly inside `chatnotes_app.py` or commit it to GitHub.
+
+## Run the Application
 
 ```bash
 python chatnotes_app.py
 ```
 
-A local SQLite database will be created for storing the notes.
+A local SQLite database will be created automatically when the application starts.
 
 ## Database
 
-The application uses SQLite for local storage.
+ChatNotes uses SQLite for local note storage.
 
 ### Notes Table
 
-| Column      | Type    | Purpose                   |
+| Column      | Type    | Description               |
 | ----------- | ------- | ------------------------- |
-| `id`        | INTEGER | Unique identifier         |
-| `message`   | TEXT    | Note content              |
+| `id`        | INTEGER | Unique note identifier    |
+| `title`     | TEXT    | Note title                |
+| `content`   | TEXT    | Note content              |
 | `timestamp` | TEXT    | Time the note was created |
-| `tag`       | TEXT    | Optional note tag         |
 
-## Technologies
+## AI Summarisation
 
-* **Python**
-* **Tkinter / ttk**
-* **SQLite3**
+The **Summarize Note** feature uses the OpenAI API to generate a short summary of the selected note.
+
+If an API key is not configured, the rest of the application can still be used for creating, searching, viewing, and deleting notes. AI summarisation simply remains unavailable.
 
 ## What I Learned
 
-This project gave me practical experience with:
+This project gave me practical experience with several areas of Python development:
 
 * Building a desktop GUI with Tkinter
-* Connecting a Python application to a database
+* Organising an application across multiple Python files
 * Creating and querying an SQLite database
-* Handling user input
-* Organising code across multiple Python files
-* Designing a simple search function
-* Managing application state
+* Handling user input and application events
+* Searching and managing stored data
+* Working with an external API
+* Handling API errors and missing configuration
+* Keeping API credentials outside the source code
 
 ## Future Improvements
 
 Possible future versions could include:
 
-* AI-assisted note summarisation
+* Better note editing
+* Note categories or tags
 * Voice input
 * Text-to-speech
 * Dark mode
-* Improved tag organisation
+* Improved AI features
 * Cloud backup
 
 These features are not part of the current version.
@@ -127,4 +171,4 @@ These features are not part of the current version.
 
 **Abiral Upreti**
 
-This project is part of my ongoing work with Python and computer science.
+A Python project focused on learning application development, databases, and AI integration.
